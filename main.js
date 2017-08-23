@@ -194,7 +194,12 @@ console.log( 'The total number of cash sales is:', numCashSales );
   HINT(S):
   - Make sure to exclude any 'sales' made by 'credit'!
 */
-var numCreditPurchases;
+
+function creditPurchases(transaction) {
+  return(transaction['type'] === 'purchase' && transaction['paymentMethod'] === 'credit');
+}
+
+var numCreditPurchases = transactions.filter(creditPurchases).length;
 
 console.log( 'The total number of credit purchases is:', numCreditPurchases );
 
@@ -211,7 +216,13 @@ console.log( 'The total number of credit purchases is:', numCreditPurchases );
   - The assembled array should be made up of strings, not full `transaction` objects.
   - This array is allowed to contain duplicate values.
 */
-var uniqueVendors;
+
+function vendors(transaction) {
+  return transaction['vendor'];
+}
+
+var vendorsObjects = transactions.filter(vendors);
+var uniqueVendors = vendorsObjects.map(function(vendorObject) { return vendorObject['vendor']; });
 
 console.log( 'The unique vendors are:', uniqueVendors );
 
@@ -225,10 +236,16 @@ console.log( 'The unique vendors are:', uniqueVendors );
 
   HINT(S):
   - Not all transactions have a 'customer'!
-  - The assembled array should be made up of strings, not full `transaction` objects.
+  -   The assembled array should be made up of strings, not full `transaction` objects.
   - Make sure that the resulting array *does not* include any duplicates.
 */
-var uniqueCustomers;
+
+function customers(transaction){
+  return transaction['customer'];
+}
+
+var customersObjects = transactions.filter(customers);
+var uniqueCustomers = customersObjects.map(function(customerObject) { return customerObject['customer']; });
 
 console.log( 'The unique customers are:', uniqueCustomers );
 
